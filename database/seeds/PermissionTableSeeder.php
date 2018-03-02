@@ -13,10 +13,15 @@ class PermissionTableSeeder extends Seeder
     public function run()
     {
         $permission = [
+            [
+                'name' => 'admin',
+                'display_name' => 'Administrator',
+                'description' => 'Poweruser'
+            ],
         	[
-        		'name' => 'usr-mgmt',
-        		'display_name' => 'Zarządzanie użytkownikami',
-        		'description' => 'User CRUD'
+        		'name' => 'role-list',
+        		'display_name' => 'Display Role Listing',
+        		'description' => 'See only Listing Of Role'
         	],
         	[
         		'name' => 'role-create',
@@ -34,24 +39,24 @@ class PermissionTableSeeder extends Seeder
         		'description' => 'Delete Role'
         	],
         	[
-        		'name' => 'item-list',
-        		'display_name' => 'Display Item Listing',
-        		'description' => 'See only Listing Of Item'
+        		'name' => 'trip-list',
+        		'display_name' => 'Display trip Listing',
+        		'description' => 'See only Listing Of trip'
         	],
         	[
-        		'name' => 'item-create',
-        		'display_name' => 'Create Item',
-        		'description' => 'Create New Item'
+        		'name' => 'trip-create',
+        		'display_name' => 'Create trip',
+        		'description' => 'Create New trip'
         	],
         	[
-        		'name' => 'item-edit',
-        		'display_name' => 'Edit Item',
-        		'description' => 'Edit Item'
+        		'name' => 'trip-edit',
+        		'display_name' => 'Edit trip',
+        		'description' => 'Edit trip'
         	],
         	[
-        		'name' => 'item-delete',
-        		'display_name' => 'Delete Item',
-        		'description' => 'Delete Item'
+        		'name' => 'trip-delete',
+        		'display_name' => 'Delete trip',
+        		'description' => 'Delete trip'
         	]
         ];
 
