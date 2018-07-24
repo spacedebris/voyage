@@ -7,13 +7,13 @@
 	            <h2>Stwórz nową rolę</h2>
 	        </div>
 	        <div class="pull-right">
-	            <a class="btn btn-primary" href="{{ route('roles.index') }}"> Confij</a>
+	            <a class="btn btn-primary" href="{{ route('roles.index') }}">Confij</a>
 	        </div>
 	    </div>
 	</div>
 	@if (count($errors) > 0)
 		<div class="alert alert-danger">
-			<strong>Whoops!</strong> Pojawił się problem w formularzu.<br><br>
+			<strong>Whoops!</strong>Pojawił się problem w formularzu.<br><br>
 			<ul>
 				@foreach ($errors->all() as $error)
 					<li>{{ $error }}</li>

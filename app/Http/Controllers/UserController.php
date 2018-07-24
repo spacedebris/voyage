@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Role;
+use App\Profile;
 use DB;
 use Hash;
 
@@ -48,8 +49,8 @@ class UserController extends Controller
 
 
         $input = $request->all();
+        
         $input['password'] = Hash::make($input['password']);
-
 
         $user = User::create($input);
         foreach ($request->input('roles') as $key => $value) {
@@ -58,7 +59,7 @@ class UserController extends Controller
 
 
         return redirect()->route('users.index')
-                        ->with('success','User created successfully');
+                        ->with('success','Użytkownik utworzony pomyślnie');
     }
 
 
@@ -71,7 +72,8 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('users.show',compact('user'));
+        $address = $user->profiles;
+        return view('users.show',compact('user','address'));
     }
 
 
@@ -86,9 +88,10 @@ class UserController extends Controller
         $user = User::find($id);
         $roles = Role::pluck('display_name','id');
         $userRole = $user->roles->pluck('id','id')->toArray();
+        $address = $user->profiles;
+        \Debugbar::info(compact('user','roles','userRole', 'address'));  
 
-
-        return view('users.edit',compact('user','roles','userRole'));
+        return view('users.edit',compact('user','roles','userRole', 'address'));
     }
 
 
@@ -105,7 +108,8 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
-            'roles' => 'required'
+            'roles' => 'required',
+            /*'address' => 'required'*/
         ]);
 
 
@@ -115,10 +119,11 @@ class UserController extends Controller
         }else{
             $input = array_except($input,array('password'));    
         }
-
-
+        \Debugbar::info($input);
         $user = User::find($id);
         $user->update($input);
+
+
         DB::table('role_user')->where('user_id',$id)->delete();
 
         
@@ -128,7 +133,7 @@ class UserController extends Controller
 
 
         return redirect()->route('users.index')
-                        ->with('success','User updated successfully');
+                        ->with('success','Użytkownik wyedytowany pomyślnie');
     }
 
 
@@ -142,6 +147,6 @@ class UserController extends Controller
     {
         User::find($id)->delete();
         return redirect()->route('users.index')
-                        ->with('success','User deleted successfully');
+                        ->with('success','Użytkownik usunięty pomyślnie');
     }
 }

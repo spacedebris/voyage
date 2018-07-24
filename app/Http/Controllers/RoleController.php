@@ -1,12 +1,13 @@
 <?php
-
 namespace App\Http\Controllers;
+
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Role;
 use App\Permission;
 use DB;
+
 
 class RoleController extends Controller
 {
@@ -64,7 +65,7 @@ class RoleController extends Controller
 
 
         return redirect()->route('roles.index')
-                        ->with('success','Rola stworzona pomyślnie');
+                        ->with('success','Role created successfully');
     }
     /**
      * Display the specified resource.
@@ -134,7 +135,7 @@ class RoleController extends Controller
 
 
         return redirect()->route('roles.index')
-                        ->with('success','Rola zakutualizowana pomyślnie');
+                        ->with('success','Role updated successfully');
     }
     /**
      * Remove the specified resource from storage.
@@ -146,6 +147,6 @@ class RoleController extends Controller
     {
         DB::table("roles")->where('id',$id)->delete();
         return redirect()->route('roles.index')
-                        ->with('success','Rola usunięta pomyślnie');
+                        ->with('success','Role deleted successfully');
     }
 }

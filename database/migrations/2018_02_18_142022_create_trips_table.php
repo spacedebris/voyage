@@ -13,7 +13,17 @@ class CreateTripsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('trips', function(Blueprint $table){
+            $table->increments('id');
+            $table->string('title');
+            $table->date('from');
+            $table->date('to');
+            $table->string('destination');
+            $table->string('purpose');
+            $table->string('financing');
+            $table->string('advances');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +33,6 @@ class CreateTripsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('trips');
     }
 }
