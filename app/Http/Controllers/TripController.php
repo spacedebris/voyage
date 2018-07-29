@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Item;
+use App\Trip;
 
 class TripController extends Controller
 {
@@ -16,7 +16,7 @@ class TripController extends Controller
     public function index(Request $request)
     {
         $items = Item::orderBy('id','DESC')->paginate(5);
-        return view('ItemCRUD2.index',compact('items'))
+        return view('trips.index',compact('items'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -28,7 +28,7 @@ class TripController extends Controller
      */
     public function create()
     {
-        return view('ItemCRUD2.create');
+        return view('trips.create');
     }
 
 
@@ -49,7 +49,7 @@ class TripController extends Controller
         Item::create($request->all());
 
 
-        return redirect()->route('itemCRUD2.index')
+        return redirect()->route('trips.index')
                         ->with('success','Item created successfully');
     }
 
@@ -63,7 +63,7 @@ class TripController extends Controller
     public function show($id)
     {
         $item = Item::find($id);
-        return view('ItemCRUD2.show',compact('item'));
+        return view('trips.show',compact('item'));
     }
 
 
@@ -76,7 +76,7 @@ class TripController extends Controller
     public function edit($id)
     {
         $item = Item::find($id);
-        return view('ItemCRUD2.edit',compact('item'));
+        return view('trips.edit',compact('item'));
     }
 
 
@@ -98,7 +98,7 @@ class TripController extends Controller
         Item::find($id)->update($request->all());
 
 
-        return redirect()->route('itemCRUD2.index')
+        return redirect()->route('trips.index')
                         ->with('success','Item updated successfully');
     }
 
@@ -112,7 +112,7 @@ class TripController extends Controller
     public function destroy($id)
     {
         Item::find($id)->delete();
-        return redirect()->route('itemCRUD2.index')
+        return redirect()->route('trips.index')
                         ->with('success','Item deleted successfully');
     }
 }

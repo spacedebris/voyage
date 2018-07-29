@@ -35,6 +35,6 @@ class User extends Authenticatable
     }
 
     public function trips(){
-        return $this->hasMany('App\Trip');
+        return $this->belongsToMany('App\User');
     }
 }

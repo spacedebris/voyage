@@ -57,14 +57,38 @@ Route::group(['middleware' => ['auth']], function(){
 		'middleware' => ['permission:admin|role-delete']]);
 
 
-	Route::get('itemCRUD2',['as'=>'itemCRUD2.index','uses'=>'ItemCRUD2Controller@index','middleware' => ['permission:item-list|item-create|item-edit|item-delete']]);
-	Route::get('itemCRUD2/create',['as'=>'itemCRUD2.create','uses'=>'ItemCRUD2Controller@create','middleware' => ['permission:item-create']]);
-	Route::post('itemCRUD2/create',['as'=>'itemCRUD2.store','uses'=>'ItemCRUD2Controller@store','middleware' => ['permission:item-create']]);
-	Route::get('itemCRUD2/{id}',['as'=>'itemCRUD2.show','uses'=>'ItemCRUD2Controller@show']);
-	Route::get('itemCRUD2/{id}/edit',['as'=>'itemCRUD2.edit','uses'=>'ItemCRUD2Controller@edit','middleware' => ['permission:item-edit']]);
-	Route::patch('itemCRUD2/{id}',['as'=>'itemCRUD2.update','uses'=>'ItemCRUD2Controller@update','middleware' => ['permission:item-edit']]);
-	Route::delete('itemCRUD2/{id}',['as'=>'itemCRUD2.destroy','uses'=>'ItemCRUD2Controller@destroy','middleware' => ['permission:item-delete']]);
+	Route::get('trips',[
+		'as'=>'trips.index',
+		'uses'=>'TripController@index',
+		'middleware' => ['permission:item-list|item-create|item-edit|item-delete']]);
 
+	Route::get('trips/create',[
+		'as'=>'trips.create',
+		'uses'=>'TripController@create',
+		'middleware' => ['permission:item-create']]);
 
+	Route::post('trips/create',[
+		'as'=>'trips.store',
+		'uses'=>'TripController@store',
+		'middleware' => ['permission:item-create']]);
+
+	Route::get('trips/{id}',
+		['as'=>'trips.show',
+		'uses'=>'TripController@show']);
+
+	Route::get('trips/{id}/edit',
+		['as'=>'trips.edit',
+		'uses'=>'TripController@edit',
+		'middleware' => ['permission:item-edit']]);
+
+	Route::patch('trips/{id}',
+		['as'=>'trips.update',
+		'uses'=>'TripController@update',
+		'middleware' => ['permission:item-edit']]);
+
+	Route::delete('trips/{id}',[
+		'as'=>'trips.destroy',
+		'uses'=>'TripController@destroy',
+		'middleware' => ['permission:item-delete']]);
 });
 
