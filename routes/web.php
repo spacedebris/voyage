@@ -50,30 +50,34 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::patch('roles/{id}',[
 		'as'=>'roles.update',
 		'uses'=>'RoleController@update',
-		'middleware' => ['permission:admin|role-edit']]);
+		'middleware' => ['permission:admin|role-edit']
+	]);
 	Route::delete('roles/{id}',[
 		'as'=>'roles.destroy',
 		'uses'=>'RoleController@destroy',
-		'middleware' => ['permission:admin|role-delete']]);
-
+		'middleware' => ['permission:admin|role-delete']
+	]);
 
 	Route::get('trips',[
 		'as'=>'trips.index',
 		'uses'=>'TripController@index',
-		'middleware' => ['permission:item-list|item-create|item-edit|item-delete']]);
+		/*'middleware' => ['permission:admin','permission:item-list|item-create|item-edit|item-delete']*/
+	]);
 
 	Route::get('trips/create',[
 		'as'=>'trips.create',
 		'uses'=>'TripController@create',
-		'middleware' => ['permission:item-create']]);
+		'middleware' => ['permission:item-create']
+	]);
 
 	Route::post('trips/create',[
 		'as'=>'trips.store',
 		'uses'=>'TripController@store',
-		'middleware' => ['permission:item-create']]);
+		'middleware' => ['permission:item-create']
+	]);
 
-	Route::get('trips/{id}',
-		['as'=>'trips.show',
+	Route::get('trips/{id}',[
+		'as'=>'trips.show',
 		'uses'=>'TripController@show']);
 
 	Route::get('trips/{id}/edit',

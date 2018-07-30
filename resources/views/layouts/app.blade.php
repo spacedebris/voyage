@@ -59,9 +59,11 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+
                                     <li>
                                         <a href="{{ route('users.index') }}">Zarządzanie użytkownikami</a>
                                         <a href="{{ route('roles.index') }}">Zarządzanie rolami</a>
+                                        <a href="{{ route('trips.index') }}">Tripy</a>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

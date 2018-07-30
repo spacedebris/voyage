@@ -15,8 +15,8 @@ class TripController extends Controller
      */
     public function index(Request $request)
     {
-        $items = Item::orderBy('id','DESC')->paginate(5);
-        return view('trips.index',compact('items'))
+        $trips = Trip::orderBy('id','DESC')->paginate(5);
+        return view('trips.index',compact('trips'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
